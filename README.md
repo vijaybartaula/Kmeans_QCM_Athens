@@ -2,49 +2,42 @@
 
 ## **Project Overview**
 
-This project employs **K-means clustering** to analyze and categorize quantum circuits from the **IBMQ Athens** dataset based on their **performance characteristics**. Quantum computing, while revolutionary, faces significant **performance and reliability challenges** due to the inherent fragility of quantum states. These states are susceptible to errors, noise, and instability, making the performance of quantum circuits—sequences of quantum operations designed to solve computational problems—highly unpredictable and variable across different quantum processors. The IBMQ Athens dataset offers a comprehensive resource for understanding these challenges, providing detailed insights into the behavior of quantum circuits on IBM's **Athens quantum processor**.
+This project employs **K-means clustering** to analyze and categorize quantum circuits from the **IBMQ Athens** dataset based on their **performance characteristics**. Quantum computing, while revolutionary, faces significant **performance and reliability challenges** due to the inherent fragility of quantum states. These states are susceptible to errors, noise, and instability, making the performance of quantum circuits highly unpredictable.
 
-The primary objective of this project is to apply **unsupervised learning** techniques, specifically K-means clustering, to identify patterns in quantum circuits that correlate with their performance. The **IBMQ Athens dataset** serves as a rich source of data, capturing various **performance characteristics** of quantum circuits executed on the Athens processor, including:
+The **IBMQ Athens dataset** offers a comprehensive resource for understanding these challenges, providing detailed insights into the behavior of quantum circuits on IBM's **Athens quantum processor**.
 
-1. **Quantum Gate Connectivity:** The arrangement of quantum gates operating on qubits significantly impacts circuit performance. High connectivity enables complex operations but increases susceptibility to noise and errors, while lower connectivity may yield more stable but less powerful circuits.
+The primary objective of this project is to apply **unsupervised learning** techniques, specifically K-means clustering, to identify patterns in quantum circuits that correlate with their performance.
 
-2. **Error Rates:** Errors in quantum circuits arise from imperfections in gate operations, qubit initialization, and measurements. These errors, unavoidable in current systems, critically affect the reliability of circuit outcomes. High error rates indicate less reliable circuits, whereas low error rates suggest better performance and stability.
-
-3. **Circuit Depth:** The number of sequential gate layers in a circuit, known as circuit depth, influences performance. Deeper circuits, necessary for complex computations, are more prone to noise accumulation and errors, especially with limited qubit coherence times. Shallow circuits, while more stable, may lack the complexity needed for advanced problems.
-
-4. **Coherence Times:** Coherence time refers to the duration a qubit can maintain its quantum state before decoherence occurs. Longer coherence times are essential for executing complex algorithms, as they allow more operations before quantum states decay. Short coherence times severely limit circuit performance, particularly for deeper or more complex algorithms.
-
-The IBMQ Athens dataset encapsulates these key performance features, offering a comprehensive view of quantum circuit behavior under real-world conditions. By **categorizing circuits based on their performance characteristics**, this project aims to identify **patterns, clusters, and outliers** in the data. For example, grouping circuits with similar error rates and coherence times can highlight which circuits are likely to succeed or fail on a given processor. This categorization also helps identify hardware limitations and **inform future improvements**.
-
-Applying clustering techniques like **K-means** enables a deeper understanding of how factors such as gate connectivity, error rates, circuit depth, and coherence times interact to shape circuit performance. This not only aids in optimizing individual circuits but also provides insights into **system-wide improvements** for quantum computing hardware. By understanding the behavior of different circuit types, researchers can focus on enhancing specific areas, such as reducing error rates or extending coherence times, thereby improving the overall reliability and capability of processors like **IBMQ Athens**.
-
-K-means clustering reveals subtle but critical patterns, such as:
-
-- **Clusters of circuits** with low error rates but short coherence times, indicating challenges in maintaining quantum states over extended periods.
-- **High error rate clusters** that may highlight problematic circuits due to faulty gates or poor qubit connections.
-- **Efficient circuits** with optimal combinations of low error rates, favorable gate connectivity, and sufficient coherence times.
-
-These insights can guide future improvements in quantum circuit design and processor optimization.
-
-### **Clustering Process**
-
-The project applies **K-means clustering** to segment the dataset into distinct clusters based on the similarity of performance characteristics. Each cluster represents a group of circuits with similar behaviors, enabling the identification of:
-
-- **Outliers** or poorly performing circuits that deviate from the norm.
-- **Well-performing circuit groups** that can serve as templates for future designs.
-
-After clustering, detailed analysis of cluster characteristics—such as mean feature values—provides a clearer understanding of the types of circuits in each group. This step is crucial for pinpointing areas where quantum processors can be improved, whether by addressing specific gate errors, optimizing coherence times, or reducing circuit depth.
+### Key Performance Features:
+| Feature                | Description |
+|------------------------|-------------|
+| **Quantum Gate Connectivity** | The arrangement of quantum gates and their impact on performance (higher connectivity = more complexity but increased noise). |
+| **Error Rates**         | The degree of errors in gate operations, qubit initialization, and measurements. |
+| **Circuit Depth**       | The number of sequential gate layers in a circuit. Deep circuits are prone to noise, shallow ones may lack complexity. |
+| **Coherence Times**     | The time a qubit maintains its quantum state before decoherence occurs, affecting the circuit’s complexity and reliability. |
 
 ---
 
-The project uses the **Elbow Method** and **Silhouette Score** to determine the optimal number of clusters and integrates **PCA (Principal Component Analysis)** for visualizing high-dimensional data in a 2D plot.
+### **Clustering Process**
 
-Once clusters are formed, the project provides insights by analyzing the mean feature values within each cluster, such as identifying circuits with high error rates but low coherence times, or circuits that exhibit optimal performance with low error rates.
+The project applies **K-means clustering** to segment the dataset into distinct clusters based on performance similarities. This helps to identify:
 
-## Model Evaluation:
-- **Silhouette Score** to evaluate the quality of clustering and cluster separation.
+- **Outliers** or poorly performing circuits.
+- **Well-performing circuit groups** for future designs.
 
-Additionally, the project explores fine-tuning the K-means model by experimenting with parameters like `n_init` and testing alternative clustering techniques (e.g., DBSCAN or Hierarchical Clustering). Future work includes expanding the feature set and validating results with new datasets.
+#### Steps in the Clustering Process:
+1. **Preprocessing**: Scaling and normalizing the features for better accuracy.
+2. **Clustering**: Applying K-means to identify clusters based on features like error rates, coherence times, and circuit depth.
+3. **Evaluation**: Using metrics like the **Silhouette Score** and **Elbow Method** to fine-tune the number of clusters.
+
+---
+
+### **Model Evaluation**
+
+| Metric                | Purpose                                              |
+|-----------------------|------------------------------------------------------|
+| **Silhouette Score**   | Measures how similar an object is to its own cluster compared to other clusters. |
+| **Elbow Method**       | Determines the optimal number of clusters by looking at the "elbow" point in a graph of inertia values. |
 
 ---
 
